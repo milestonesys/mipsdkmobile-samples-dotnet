@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VideoOS.Mobile.SDK.Samples.Xamarin.Views.LoginView"
+             Title="Mobile SDK Live Video Sample">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout Spacing="20"
+                         Padding="20"
+                         VerticalOptions="Start">
+                <Label FontSize="20"
+                       Margin="5,0,0,0"
+                       Text="Login details"
+                       HorizontalOptions="Start" />
+                <Entry Placeholder="Address"
+                       PlaceholderColor="LightGray"
+                       Text="{Binding Address}" />
+                <Entry Placeholder="Port"
+                       PlaceholderColor="LightGray"
+                       Text="{Binding Port}" />
+                <Entry Placeholder="User name"
+                       PlaceholderColor="LightGray"
+                       Text="{Binding Username}" />
+                <Entry Placeholder="Password"
+                       PlaceholderColor="LightGray"
+                       IsPassword="True"
+                       Text="{Binding Password}" />
+                <Button Text="Login"
+                        TextColor="White"
+                        BackgroundColor="#FF339AE5"
+                        Margin="0,20,0,0"
+                        Clicked="OnLogin" />
+            </StackLayout>
+            <ActivityIndicator IsVisible="{Binding IsBusy}"
+                               IsRunning="{Binding IsBusy}"
+                               Color="DarkGray"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="CenterAndExpand" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VideoOS.Mobile.SDK.Samples.Xamarin.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PrimaryTextColor">#000000</Color>
+            <Color x:Key="CellBackgroundColor">#FFFFFF</Color>
+
+            <Style x:Key="MainViewCellLabelStyle"
+                   TargetType="{x:Type Label}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource PrimaryTextColor}" />
+                <Setter Property="BackgroundColor"
+                        Value="{StaticResource CellBackgroundColor}" />
+                <Setter Property="VerticalOptions"
+                        Value="Center" />
+                <Setter Property="FontSize"
+                        Value="16" />
+            </Style>
+
+            <Style x:Key="ViewCellStyle"
+                   TargetType="{x:Type StackLayout}">
+                <Setter Property="BackgroundColor"
+                        Value="{StaticResource CellBackgroundColor}" />
+                <Setter Property="Padding"
+                        Value="15,0" />
+            </Style>
+
+            <Style x:Key="ListViewStyle"
+                   TargetType="{x:Type ListView}">
+                <Setter Property="Margin"
+                        Value="0,10,0,0" />
+                <Setter Property="BackgroundColor"
+                        Value="{StaticResource CellBackgroundColor}" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

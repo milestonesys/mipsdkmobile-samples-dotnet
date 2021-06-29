@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VideoOS.Mobile.SDK.Samples.Xamarin.Views.CameraListView"
+             Title="Cameras">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout>
+                <ListView x:Name="CamerasList"
+                          ItemSelected="OnItemSelected"
+                          HasUnevenRows="true"
+                          Style="{StaticResource ListViewStyle}"
+                          ItemsSource="{Binding Cameras}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell Height="60">
+                                <StackLayout Orientation="Horizontal"
+                                                 Style="{StaticResource ViewCellStyle}">
+                                    <Label Text="{Binding ItemName}"
+                                               Style="{StaticResource MainViewCellLabelStyle}"
+                                               LineBreakMode="TailTruncation"
+                                               HorizontalOptions="FillAndExpand" 
+                                               TextColor="Black"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <x:Arguments>
+                        <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
+                    </x:Arguments>
+                </ListView>
+            </StackLayout>
+            <ActivityIndicator IsVisible="{Binding IsBusy}"
+                               IsRunning="{Binding IsBusy}"
+                               Color="DarkGray"
+                               VerticalOptions="CenterAndExpand"
+                               HorizontalOptions="CenterAndExpand" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
