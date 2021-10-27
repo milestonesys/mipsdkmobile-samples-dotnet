@@ -1,11 +1,9 @@
 ﻿using Helpers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using VideoOS.Mobile.Portable.MetaChannel;
 using VideoOS.Mobile.Portable.Utilities;
+using VideoOS.Mobile.Portable.VideoChannel.Params;
 using VideoOS.Mobile.SDK.Portable.Server.Base.Connection;
 
 namespace PtzSample
@@ -22,7 +20,7 @@ namespace PtzSample
             Application.SetCompatibleTextRenderingDefault(false);
 
             // Initialize the Mobile SDK
-            VideoOS.Mobile.SDK.Environment.Instance.Initialize();
+            VideoOS.Mobile.SDK.Portable.Environment.Instance.Initialize();
 
             LoginForm = new LoginFormAsync(OnOkayAction);
             Application.Run(LoginForm);
@@ -34,9 +32,9 @@ namespace PtzSample
         private static LoginFormAsync LoginForm { get; set; }
         private static Connection Connection { get; set; }
 
-        private static async void OnOkayAction(Uri uri, string username, string password)
+        private static async void OnOkayAction(Uri uri, string username, string password, UserType userType)
         {
-            var channelType = 0 == string.Compare(uri.Scheme, "http", StringComparison.InvariantCultureIgnoreCase)
+            var channelType = uri.Scheme.Equals(Uri.UriSchemeHttp, StringComparison.InvariantCultureIgnoreCase)
                 ? ChannelTypes.HTTP
                 : ChannelTypes.HTTPSecure;
             Connection = new Connection(channelType, uri.Host, (uint)uri.Port);
@@ -50,7 +48,7 @@ namespace PtzSample
                 return;
             }
 
-            var loginResponse = await Connection.LogInAsync(username, password, ClientTypes.MobileClient, null, TimeSpan.FromMinutes(2));
+            var loginResponse = await Connection.LogInAsync(username, password, ClientTypes.MobileClient, null, TimeSpan.FromMinutes(2), userType);
             if (loginResponse.ErrorCode != ErrorCodes.Ok)
             {
                 Connection = null;

@@ -19,9 +19,7 @@ namespace VideoOS.Mobile.SDK.Samples.Xamarin.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            Mobile.Phone.Environment.Instance.Initialize();
-            Phone.Environment.Instance.Initialze();
-
+        
             LoadApplication(new App());
             
             return base.FinishedLaunching(app, options);

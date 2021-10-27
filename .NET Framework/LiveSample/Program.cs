@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using Helpers;
+using System;
 using System.Windows.Forms;
-using Helpers;
 using VideoOS.Mobile.Portable.MetaChannel;
 using VideoOS.Mobile.Portable.Utilities;
+using VideoOS.Mobile.Portable.VideoChannel.Params;
 using VideoOS.Mobile.SDK.Portable.Server.Base.Connection;
 
 namespace LiveSample
@@ -23,7 +20,7 @@ namespace LiveSample
             Application.SetCompatibleTextRenderingDefault(false);
 
             // Initialize the Mobile SDK
-            VideoOS.Mobile.SDK.Environment.Instance.Initialize();
+            VideoOS.Mobile.SDK.Portable.Environment.Instance.Initialize();
 
             Application.Run(new LoginForm(OnOkayAction));
 
@@ -34,9 +31,9 @@ namespace LiveSample
         private static bool Initialized = false;
         public static Connection Connection { get; private set; }
 
-        private static void OnOkayAction(Uri uri, string username, string password)
+        private static void OnOkayAction(Uri uri, string username, string password, UserType userType)
         {
-            var channelType = 0 == string.Compare(uri.Scheme, "http", StringComparison.InvariantCultureIgnoreCase)
+            var channelType = uri.Scheme.Equals(Uri.UriSchemeHttp, StringComparison.InvariantCultureIgnoreCase)
                 ? ChannelTypes.HTTP
                 : ChannelTypes.HTTPSecure;
             Connection = new Connection(channelType, uri.Host, (uint)uri.Port);
@@ -46,7 +43,7 @@ namespace LiveSample
             if (connectResponse.ErrorCode != ErrorCodes.Ok)
                 throw new Exception("Not connected to surveillance server");
 
-            var loginResponse = Connection.LogIn(username, password, ClientTypes.MobileClient, TimeSpan.FromMinutes(2));
+            var loginResponse = Connection.LogIn(username, password, ClientTypes.MobileClient, TimeSpan.FromMinutes(2), userType);
             if (loginResponse.ErrorCode != ErrorCodes.Ok)
                 throw new Exception("Not loged in to the surveillance server");
 

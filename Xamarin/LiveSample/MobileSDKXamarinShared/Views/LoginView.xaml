@@ -25,7 +25,15 @@
                        PlaceholderColor="LightGray"
                        IsPassword="True"
                        Text="{Binding Password}" />
-                <Button Text="Login"
+                <Picker Title="Authentication" SelectedIndex="{Binding SelectedUserTypeIndex}">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Windows authentication</x:String>
+                            <x:String>Basic authentication</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                    <Button Text="Login"
                         TextColor="White"
                         BackgroundColor="#FF339AE5"
                         Margin="0,20,0,0"

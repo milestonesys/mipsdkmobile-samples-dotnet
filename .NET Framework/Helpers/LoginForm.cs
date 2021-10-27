@@ -1,20 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VideoOS.Mobile.Portable.VideoChannel.Params;
 
 namespace Helpers
 {
     public partial class LoginForm 
         : Form
     {
-        protected readonly Action<Uri, string, string> _onOkayAction;
-        public LoginForm(Action<Uri, string, string> onOkayAction)
+        protected readonly Action<Uri, string, string, UserType> _onOkayAction;
+        public LoginForm(Action<Uri, string, string, UserType> onOkayAction)
         {
             InitializeComponent();
 
@@ -37,6 +32,19 @@ namespace Helpers
         private void OnButtonCancelClick(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private UserType GetSelecetedAuthentication()
+        {
+            if (comboBoxAuthentication.InvokeRequired)
+            {
+                return (UserType)comboBoxAuthentication.Invoke(new Func<UserType>(GetSelecetedAuthentication));
+            }
+            else
+            {
+                return comboBoxAuthentication.SelectedItem.ToString().Equals("Windows authentication", StringComparison.InvariantCultureIgnoreCase) ?
+                    UserType.ActiveDirectory : UserType.Basic;
+            }
         }
 
         protected void UpdateState(bool inputEnabled)
@@ -81,7 +89,7 @@ namespace Helpers
         protected void CallTeAction()
         {
             var uri = new Uri(textBoxUrl.Text);
-            _onOkayAction(uri, textBoxUsername.Text, textBoxPassword.Text);
+            _onOkayAction(uri, textBoxUsername.Text, textBoxPassword.Text, GetSelecetedAuthentication());
         }
     }
 }

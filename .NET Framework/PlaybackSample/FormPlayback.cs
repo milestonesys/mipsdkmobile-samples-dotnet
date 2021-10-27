@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using VideoOS.Mobile.Portable.Utilities;
 using VideoOS.Mobile.Portable.VideoChannel.Binary;
@@ -15,7 +9,6 @@ using VideoOS.Mobile.Portable.ViewGroupItem;
 using VideoOS.Mobile.SDK.Portable.Server.Base.CommandResults;
 using VideoOS.Mobile.SDK.Portable.Server.Base.Connection;
 using VideoOS.Mobile.SDK.Portable.Server.Base.Video;
-using VideoOS.Mobile.SDK.Portable.Server.ViewGroups;
 
 namespace PlaybackSample
 {

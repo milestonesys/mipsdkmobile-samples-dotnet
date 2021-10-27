@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
+using VideoOS.Mobile.Portable.VideoChannel.Params;
 
 namespace Helpers
 {
@@ -16,7 +12,7 @@ namespace Helpers
         {
         }
 
-        public LoginFormAsync(Action<Uri, string, string> onOkayAction)
+        public LoginFormAsync(Action<Uri, string, string, UserType> onOkayAction)
             : base(onOkayAction)
         {
             InitializeComponent();

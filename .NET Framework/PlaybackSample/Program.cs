@@ -22,7 +22,7 @@ namespace PlaybackSample
             Application.SetCompatibleTextRenderingDefault(false);
 
             // Initialize the Mobile SDK
-            VideoOS.Mobile.SDK.Environment.Instance.Initialize();
+            VideoOS.Mobile.SDK.Portable.Environment.Instance.Initialize();
 
             Application.Run(new LoginForm(OnOkayAction));
 
@@ -34,14 +34,16 @@ namespace PlaybackSample
         private static Connection Connection { get; set; }
         private static string Username { get; set; }
         private static string Password { get; set; }
+        private static UserType UserType { get; set; } = UserType.Unknown;
 
-        private static void OnOkayAction(Uri uri, string username, string password)
+        private static void OnOkayAction(Uri uri, string username, string password, UserType userType)
         {
             Initialized = false;
             Username = username;
             Password = password;
-
-            var channelType = 0 == string.Compare(uri.Scheme, "http", StringComparison.InvariantCultureIgnoreCase)
+            UserType = userType;
+            
+            var channelType = uri.Scheme.Equals(Uri.UriSchemeHttp, StringComparison.InvariantCultureIgnoreCase)
                 ? ChannelTypes.HTTP
                 : ChannelTypes.HTTPSecure;
             Connection = new Connection(channelType, uri.Host, (uint)uri.Port);
@@ -66,7 +68,7 @@ namespace PlaybackSample
 
         private static void OnConnectSuccess(ConnectResponse responseParams)
         {
-            Connection.LogIn(Username, Password, ClientTypes.MobileClient, UserType.Unknown, null,
+            Connection.LogIn(Username, Password, ClientTypes.MobileClient, UserType, null,
                 OnLoginSuccess, OnFail);
         }
 

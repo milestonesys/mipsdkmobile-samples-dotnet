@@ -4,25 +4,23 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Windows.Foundation;
-using Windows.Media.Playback;
-using Windows.Media.Core;
-using Windows.Storage.Streams;
-using Windows.UI.Core;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Imaging;
 using VideoOS.Mobile.Portable.MetaChannel;
 using VideoOS.Mobile.Portable.Utilities;
 using VideoOS.Mobile.Portable.VideoChannel.Params;
 using VideoOS.Mobile.Portable.ViewGroupItem;
-using VideoOS.Mobile.SDK.Portable.Server.Base.Audio;
 using VideoOS.Mobile.SDK.Portable.Server.Base.CommandResults;
 using VideoOS.Mobile.SDK.Portable.Server.Base.Connection;
 using VideoOS.Mobile.SDK.Portable.Server.Base.Video;
 using VideoOS.Mobile.SDK.Portable.Server.ViewGroups;
+using Windows.Foundation;
+using Windows.Media.Core;
+using Windows.Media.Playback;
+using Windows.Storage.Streams;
+using Windows.UI.Core;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace AudioPlaybackUwpSample
 {
@@ -56,12 +54,12 @@ namespace AudioPlaybackUwpSample
         /// Gets or sets the server address.
         /// </summary>
         public string ServerAddress { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the server port.
         /// </summary>
         public string ServerPort { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the name of the server user.
         /// </summary>
@@ -71,6 +69,11 @@ namespace AudioPlaybackUwpSample
         /// Gets or sets the server password.
         /// </summary>
         public string ServerPassword { get; set; }
+
+        /// <summary>
+        /// Gets or sets the selected user type index
+        /// </summary>
+        public int UserTypeIndex { get; set; }
 
         /// <summary>
         /// Gets or sets the selected camera.
@@ -224,7 +227,7 @@ namespace AudioPlaybackUwpSample
         public MainPageViewModel()
         {
             // Initialize the Mobile SDK
-            VideoOS.Mobile.SDK.Phone.Environment.Instance.Initialze();
+            VideoOS.Mobile.SDK.Portable.Environment.Instance.Initialize();
 
             // Initialize commands
             ConnectAndLoadCamerasCommand = new RelayCommand(ConnectAndLoadCameras);
@@ -252,9 +255,10 @@ namespace AudioPlaybackUwpSample
                 ShowErrorMessage("Could not connect.");
                 return;
             }
-            
+
+            var userType = UserTypeIndex == 0 ? UserType.ActiveDirectory : UserType.Basic;
             var loginResponse = _connection.LogIn(ServerUserName, ServerPassword, ClientTypes.MobileClient, DefaultTimeout,
-                UserType.Unknown, new LoginParams {SupportsAudioIn = true, SupportsAudioOut = true});
+                userType, new LoginParams {SupportsAudioIn = true, SupportsAudioOut = true});
 
             if (loginResponse.ErrorCode != ErrorCodes.Ok)
             {

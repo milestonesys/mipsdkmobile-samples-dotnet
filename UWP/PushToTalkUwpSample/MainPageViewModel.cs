@@ -56,7 +56,7 @@ namespace PushToTalkUwpSample
         /// <summary>
         /// Gets or sets the server address.
         /// </summary>
-        public string ServerAddress { get; set; } 
+        public string ServerAddress { get; set; }
 
         /// <summary>
         /// Gets or sets the server port.
@@ -66,12 +66,18 @@ namespace PushToTalkUwpSample
         /// <summary>
         /// Gets or sets the name of the server user.
         /// </summary>
-        public string ServerUserName { get; set; } 
+        public string ServerUserName { get; set; }
 
         /// <summary>
         /// Gets or sets the server password.
         /// </summary>
         public string ServerPassword { get; set; }
+
+        /// <summary>
+        /// Gets or sets the selected user type index
+        /// </summary>
+        public int UserTypeIndex { get; set; }
+
 
         /// <summary>
         /// Gets or sets the selected camera.
@@ -153,7 +159,7 @@ namespace PushToTalkUwpSample
         public MainPageViewModel()
         {
             // Initialize the Mobile SDK
-            VideoOS.Mobile.SDK.Phone.Environment.Instance.Initialze();
+            VideoOS.Mobile.SDK.Portable.Environment.Instance.Initialize();
 
             // Initialize commands
             ConnectAndLoadCamerasWithSpeakersCommand = new RelayCommand(ConnectAndLoadCamerasWithSpeakers);
@@ -178,8 +184,9 @@ namespace PushToTalkUwpSample
                 return;
             }
 
+            var userType = UserTypeIndex == 0 ? UserType.ActiveDirectory : UserType.Basic;
             var loginResponse = _connection.LogIn(ServerUserName, ServerPassword, ClientTypes.MobileClient, DefaultTimeout,
-                UserType.Unknown, new LoginParams { SupportsAudioIn = true, SupportsAudioOut = true });
+                userType, new LoginParams { SupportsAudioIn = true, SupportsAudioOut = true });
             if (loginResponse.ErrorCode != ErrorCodes.Ok)
             {
                 ShowErrorMessage("Could not login.");

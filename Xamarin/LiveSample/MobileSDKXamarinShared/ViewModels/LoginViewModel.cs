@@ -1,10 +1,10 @@
 ﻿using VideoOS.Mobile.Portable.MetaChannel;
 using VideoOS.Mobile.Portable.Utilities;
+using VideoOS.Mobile.Portable.VideoChannel.Params;
 using VideoOS.Mobile.SDK.Portable.Server.Base.CommandResults;
 using VideoOS.Mobile.SDK.Portable.Server.Base.Connection;
-using Xamarin.Forms;
 using VideoOS.Mobile.SDK.Samples.Xamarin.Views;
-using VideoOS.Mobile.Portable.VideoChannel.Params;
+using Xamarin.Forms;
 
 namespace VideoOS.Mobile.SDK.Samples.Xamarin.ViewModels
 {
@@ -18,6 +18,7 @@ namespace VideoOS.Mobile.SDK.Samples.Xamarin.ViewModels
         private uint _port;
         private string _username;
         private string _password;
+        private int _selectedUserTypeIndex;
 
         /// <summary>
         /// Gets or sets the address.
@@ -96,6 +97,25 @@ namespace VideoOS.Mobile.SDK.Samples.Xamarin.ViewModels
         }
 
         /// <summary>
+        /// Gets or sets the selected user type index
+        /// </summary>
+        public int SelectedUserTypeIndex
+        {
+            get
+            {
+                return _selectedUserTypeIndex;
+            }
+            set
+            {
+                if (_selectedUserTypeIndex != value)
+                {
+                    _selectedUserTypeIndex = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="LoginViewModel"/> class.
         /// </summary>
         public LoginViewModel()
@@ -140,7 +160,8 @@ namespace VideoOS.Mobile.SDK.Samples.Xamarin.ViewModels
                 return;
             }
 
-            Connection.LogIn(Username, Password, ClientTypes.MobileClient, UserType.Unknown, null, OnLoginResponseSuccess, OnLoginResponseFail);
+            var userType = SelectedUserTypeIndex == 0 ? UserType.ActiveDirectory : UserType.Basic;
+            Connection.LogIn(Username, Password, ClientTypes.MobileClient, userType, null, OnLoginResponseSuccess, OnLoginResponseFail);
         }
 
         private void OnLoginResponseSuccess(BaseCommandResponse response)

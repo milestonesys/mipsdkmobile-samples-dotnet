@@ -1,7 +1,7 @@
 ﻿using System;
-using Xamarin.Forms.Xaml;
 using VideoOS.Mobile.SDK.Samples.Xamarin.ViewModels;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace VideoOS.Mobile.SDK.Samples.Xamarin.Views
 {

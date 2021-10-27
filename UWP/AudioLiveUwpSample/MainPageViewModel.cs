@@ -54,6 +54,11 @@ namespace VideoOS.Mobile.SDK.Samples.UWP
         public string ServerPassword { get; set; }
 
         /// <summary>
+        /// Gets or sets the selected user type index
+        /// </summary>
+        public int UserTypeIndex { get; set; }
+
+        /// <summary>
         /// Gets or sets the selected camera.
         /// </summary>
         public RelatedViewGroupItem SelectedCamera
@@ -133,7 +138,7 @@ namespace VideoOS.Mobile.SDK.Samples.UWP
         public MainPageViewModel()
         {
             // Initialize the Mobile SDK
-            Phone.Environment.Instance.Initialze();
+            VideoOS.Mobile.SDK.Portable.Environment.Instance.Initialize();
 
             // Initialize commands
             ConnectAndLoadCamerasWithMicrophonesCommand = new RelayCommand(ConnectAndLoadCamerasWithMicrophones);
@@ -158,8 +163,9 @@ namespace VideoOS.Mobile.SDK.Samples.UWP
                 return;
             }
 
+            var userType = UserTypeIndex == 0 ? UserType.ActiveDirectory : UserType.Basic;
             var loginResponse = _connection.LogIn(ServerUserName, ServerPassword, ClientTypes.MobileClient, DefaultTimeout,
-                UserType.Unknown, new LoginParams { SupportsAudioIn = true, SupportsAudioOut = true });
+                userType, new LoginParams { SupportsAudioIn = true, SupportsAudioOut = true });
             if (loginResponse.ErrorCode != ErrorCodes.Ok)
             {
                 ShowErrorMessage("Could not login.");

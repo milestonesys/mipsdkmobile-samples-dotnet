@@ -75,7 +75,7 @@
     <Reference Include="System.Xml" />   
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MilestoneSystems.VideoOS.Mobile.SDK" Version="*" />
+    <PackageReference Include="MilestoneSystems.VideoOS.Mobile.SDK" Version="21.2.*" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FormPlayback.cs">

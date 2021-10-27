@@ -1,11 +1,7 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
+using Android.Runtime;
 
 namespace VideoOS.Mobile.SDK.Samples.Xamarin.Android
 {
@@ -21,10 +17,7 @@ namespace VideoOS.Mobile.SDK.Samples.Xamarin.Android
 
             global::Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-
-            VideoOS.Mobile.Phone.Environment.Instance.Initialize();
-            //Phone.Environment.Instance.Initialze();
-
+                   
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
