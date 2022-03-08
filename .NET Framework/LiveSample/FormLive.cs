@@ -38,9 +38,7 @@ namespace LiveSample
         {
             try
             {
-                // var publicViews = ViewGroupsHelper.GetPublicViews(Program.Connection.Views, MaxTimeout);
-                // var privateViews = ViewGroupsHelper.GetPrivateViews(Program.Connection.Views, MaxTimeout);
-                var allCamerasViews = ViewGroupsHelper.GetAllCamerasViews(Program.Connection.Views, TimeSpan.FromSeconds(15));
+                var allCamerasViews = ViewGroupsHelper.GetAllCamerasView(Program.Connection.Views, new ViewParams(), TimeSpan.FromSeconds(15));
 
                 ProcessViewItem(allCamerasViews);
             }

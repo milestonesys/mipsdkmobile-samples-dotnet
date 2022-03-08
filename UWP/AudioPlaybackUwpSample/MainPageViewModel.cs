@@ -269,7 +269,7 @@ namespace AudioPlaybackUwpSample
             _connection.RunHeartBeat = true;
             ViewGroupsHelper.SupportsAudio = true;
 
-            var allCamerasViews = ViewGroupsHelper.GetAllCamerasViews(_connection.Views, DefaultTimeout);
+            var allCamerasViews = ViewGroupsHelper.GetAllCamerasView(_connection.Views, new ViewParams(), DefaultTimeout);
             var cameras = new List<RelatedViewGroupItem>();
 
             ProcessViewItem(allCamerasViews, cameras);

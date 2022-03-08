@@ -35,7 +35,8 @@
             this.buttonBack = new System.Windows.Forms.Button();
             this.buttonForward = new System.Windows.Forms.Button();
             this.pictureBoxVideo = new System.Windows.Forms.PictureBox();
-            this.dateTimePickerCurrent = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerGoTo = new System.Windows.Forms.DateTimePicker();
+            this.labelCurrentTime = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxVideo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,7 +49,7 @@
             this.treeViewViews.Location = new System.Drawing.Point(12, 12);
             this.treeViewViews.Name = "treeViewViews";
             this.treeViewViews.SelectedImageIndex = 0;
-            this.treeViewViews.Size = new System.Drawing.Size(259, 307);
+            this.treeViewViews.Size = new System.Drawing.Size(259, 290);
             this.treeViewViews.TabIndex = 0;
             this.treeViewViews.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.TreeViewViewsNodeMouseClick);
             // 
@@ -96,22 +97,33 @@
             this.pictureBoxVideo.TabIndex = 3;
             this.pictureBoxVideo.TabStop = false;
             // 
-            // dateTimePickerCurrent
+            // dateTimePickerGoTo
             // 
-            this.dateTimePickerCurrent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.dateTimePickerCurrent.Enabled = false;
-            this.dateTimePickerCurrent.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePickerCurrent.Location = new System.Drawing.Point(93, 326);
-            this.dateTimePickerCurrent.Name = "dateTimePickerCurrent";
-            this.dateTimePickerCurrent.Size = new System.Drawing.Size(97, 20);
-            this.dateTimePickerCurrent.TabIndex = 4;
+            this.dateTimePickerGoTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dateTimePickerGoTo.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimePickerGoTo.Location = new System.Drawing.Point(93, 325);
+            this.dateTimePickerGoTo.Name = "dateTimePickerGoTo";
+            this.dateTimePickerGoTo.Size = new System.Drawing.Size(97, 20);
+            this.dateTimePickerGoTo.TabIndex = 4;
+            this.dateTimePickerGoTo.ValueChanged += new System.EventHandler(this.GoToTime);
+            // 
+            // labelCurrentTime
+            // 
+            this.labelCurrentTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelCurrentTime.AutoSize = true;
+            this.labelCurrentTime.Location = new System.Drawing.Point(12, 305);
+            this.labelCurrentTime.Name = "labelCurrentTime";
+            this.labelCurrentTime.Size = new System.Drawing.Size(89, 13);
+            this.labelCurrentTime.TabIndex = 5;
+            this.labelCurrentTime.Text = "Current time: N/A";
             // 
             // FormPlayback
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(739, 360);
-            this.Controls.Add(this.dateTimePickerCurrent);
+            this.Controls.Add(this.labelCurrentTime);
+            this.Controls.Add(this.dateTimePickerGoTo);
             this.Controls.Add(this.pictureBoxVideo);
             this.Controls.Add(this.buttonForward);
             this.Controls.Add(this.buttonBack);
@@ -121,6 +133,7 @@
             this.Resize += new System.EventHandler(this.FormPlaybackResize);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxVideo)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -131,7 +144,8 @@
         private System.Windows.Forms.Button buttonForward;
         private System.Windows.Forms.PictureBox pictureBoxVideo;
         private System.Windows.Forms.ImageList imageListIcons;
-        private System.Windows.Forms.DateTimePicker dateTimePickerCurrent;
+        private System.Windows.Forms.DateTimePicker dateTimePickerGoTo;
+        private System.Windows.Forms.Label labelCurrentTime;
     }
 }
 

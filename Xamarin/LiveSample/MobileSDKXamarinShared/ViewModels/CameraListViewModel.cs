@@ -6,6 +6,7 @@ using VideoOS.Mobile.SDK.Portable.Server.Base.Connection;
 using VideoOS.Mobile.SDK.Portable.Server.ViewGroups;
 using Xamarin.Forms;
 using VideoOS.Mobile.SDK.Samples.Xamarin.Views;
+using VideoOS.Mobile.Portable.VideoChannel.Params;
 
 namespace VideoOS.Mobile.SDK.Samples.Xamarin.ViewModels
 {
@@ -58,7 +59,7 @@ namespace VideoOS.Mobile.SDK.Samples.Xamarin.ViewModels
             try
             {
                 IsBusy = true;
-                var allCamerasViews = ViewGroupsHelper.GetAllCamerasViews(Connection.Views, App.MaxTimeout);
+                var allCamerasViews = ViewGroupsHelper.GetAllCamerasView(Connection.Views, new ViewParams(), App.MaxTimeout);
 
                 var flatList = new List<ViewGroupTree>();
                 ProcessViewItem(allCamerasViews, flatList);

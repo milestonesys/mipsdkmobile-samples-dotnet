@@ -26,7 +26,7 @@
     </SccAuxPath>
     <SccProvider>
     </SccProvider>
-    <PackageCertificateThumbprint>AB887CEF7D3DC3F0DCA1D1D112FC3DCC6AA25947</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>7391BE1A7A70CBFC090CF7957574067A9E059F8B</PackageCertificateThumbprint>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
@@ -147,14 +147,14 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MilestoneSystems.VideoOS.Mobile.SDK" Version="21.2.*" />
+    <PackageReference Include="MilestoneSystems.VideoOS.Mobile.SDK" Version="$(MIPSDKMobileVersion).*" />
     <PackageReference Include="CryptoRT">
       <Version>1.0.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.10</Version>
     </PackageReference>
-  </ItemGroup> 
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

@@ -1,20 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using Windows.Foundation;
-using Windows.Media;
-using Windows.Media.Capture;
-using Windows.Media.Capture.Frames;
-using Windows.UI.Xaml.Controls;
 using VideoOS.Mobile.Portable.MetaChannel;
 using VideoOS.Mobile.Portable.Utilities;
 using VideoOS.Mobile.Portable.VideoChannel.Params;
@@ -23,6 +14,11 @@ using VideoOS.Mobile.SDK.Portable.Server.Base.Audio;
 using VideoOS.Mobile.SDK.Portable.Server.Base.Connection;
 using VideoOS.Mobile.SDK.Portable.Server.Base.Video;
 using VideoOS.Mobile.SDK.Portable.Server.ViewGroups;
+using Windows.Foundation;
+using Windows.Media;
+using Windows.Media.Capture;
+using Windows.Media.Capture.Frames;
+using Windows.UI.Xaml.Controls;
 
 namespace PushToTalkUwpSample
 {
@@ -196,7 +192,7 @@ namespace PushToTalkUwpSample
             _connection.RunHeartBeat = true;
             ViewGroupsHelper.SupportsAudio = true;
 
-            var allCamerasViews = ViewGroupsHelper.GetAllCamerasViews(_connection.Views, DefaultTimeout);
+            var allCamerasViews = ViewGroupsHelper.GetAllCamerasView(_connection.Views, new ViewParams(), DefaultTimeout);
             var cameras = new List<RelatedViewGroupItem>();
 
             ProcessViewItem(allCamerasViews, cameras);

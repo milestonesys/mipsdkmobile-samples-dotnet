@@ -26,7 +26,7 @@
     </SccAuxPath>
     <SccProvider>
     </SccProvider>
-    <PackageCertificateThumbprint>084468817BC5AC5F45B4E45F73315353AB762426</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>DB96AC744E4B220505C9EF6EB68A55DB6F1B7AD8</PackageCertificateThumbprint>
     <PackageCertificateKeyFile>VideoStreamingSample_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
@@ -163,7 +163,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MilestoneSystems.VideoOS.Mobile.SDK" Version="21.2.*" />
+    <PackageReference Include="MilestoneSystems.VideoOS.Mobile.SDK" Version="$(MIPSDKMobileVersion).*" />
     <PackageReference Include="CryptoRT">
       <Version>1.0.2</Version>
     </PackageReference>

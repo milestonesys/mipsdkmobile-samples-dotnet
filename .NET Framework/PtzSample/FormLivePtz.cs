@@ -1,28 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using VideoOS.Mobile.Portable.MetaChannel;
-using VideoOS.Mobile.Portable.VideoChannel.Binary;
 using VideoOS.Mobile.Portable.VideoChannel.Params;
 using VideoOS.Mobile.Portable.ViewGroupItem;
 using VideoOS.Mobile.SDK.Portable.Server.Base.CommandResults;
 using VideoOS.Mobile.SDK.Portable.Server.Base.Connection;
 using VideoOS.Mobile.SDK.Portable.Server.Base.Video;
-using VideoOS.Mobile.SDK.Portable.Server.ViewGroups;
 
 namespace PtzSample
 {
     public partial class FormLivePtz 
         : Form
     {
-        private readonly List<ViewGroupTree> _listViewItems = new List<ViewGroupTree>();
+        private List<ViewGroupTree> _listViewItems = new List<ViewGroupTree>();
         private LiveVideo _liveVideo = null;
         private readonly Connection _connection = null;
         private Guid _activeCameraId = Guid.Empty;
@@ -41,9 +35,8 @@ namespace PtzSample
 
         private async void OnFormLivePtzLoad(object sender, EventArgs e)
         {
-            var allCamerasViews = await _connection.Views.GetAllViewsAndCamerasAsync(TimeSpan.FromSeconds(30));
-            ViewGroupsHelper.ExtractCameras(_listViewItems, allCamerasViews.AllSubItems);
-
+            var allCamerasViews = await _connection.Views.GetAllViewsAndCamerasAsync(new ViewParams(), TimeSpan.FromSeconds(30));
+            _listViewItems = allCamerasViews.AllSubItems.Descendants(ViewItemType.Camera).OfType<ViewGroupTree>().ToList();
             viewGroupTreeBindingSource.DataSource = _listViewItems;
             viewGroupTreeBindingSource.ResetBindings(false);
             dataGridViewCameras.SelectionMode = DataGridViewSelectionMode.FullRowSelect;

@@ -32,8 +32,7 @@ namespace PlaybackSample
         {
             treeViewViews.Nodes.Clear();
 
-            // var allViewsAndCameras = ViewGroupsHelper.GetAllViewsAndCameras(_connection.Views, maxTimeout);
-            _connection.Views.GetAllViewsAndCameras(OnGetAllItemSuccess, OnFail);
+            _connection.Views.GetAllViewsAndCameras(new ViewParams(), OnGetAllItemSuccess, OnFail);
         }
 
         private void OnFail(BaseCommandResponse responseParams)
@@ -147,7 +146,7 @@ namespace PlaybackSample
                         }
                     }
 
-                    dateTimePickerCurrent.Value = TimeConverter.FromLong((long)frame.MainHeader.TimeStampUtcMs);
+                    labelCurrentTime.Text = "Current time: " + TimeConverter.FromLong((long)frame.MainHeader.TimeStampUtcMs).ToString();
 
                     if (frame.ExtensionPresence(BinaryFrameHeaderHelper.HeaderExtensionFlags.PlaybackEvents))
                     {
@@ -215,6 +214,14 @@ namespace PlaybackSample
 
         #endregion
 
+        #region Change time
+
+        private void GoToTime(object sender, EventArgs e)
+        {
+            _playbackVideo?.PlaybackControl.GoToTime(dateTimePickerGoTo.Value);
+        }
+
+        #endregion
     }
 }
 

@@ -178,7 +178,7 @@ namespace VideoOS.Mobile.SDK.Samples.UWP
             _connection.RunHeartBeat = true;
             ViewGroupsHelper.SupportsAudio = true;
 
-            var allCamerasViews = ViewGroupsHelper.GetAllCamerasViews(_connection.Views, DefaultTimeout);
+            var allCamerasViews = ViewGroupsHelper.GetAllCamerasView(_connection.Views, new ViewParams(), DefaultTimeout);
             var cameras = new List<ViewGroupTree>();
 
             ProcessViewItem(allCamerasViews, cameras);
@@ -290,9 +290,9 @@ namespace VideoOS.Mobile.SDK.Samples.UWP
                 SignalType = StreamParamsHelper.SignalType.Live,
                 StreamType = StreamParamsHelper.StreamType.FragmentedMP4,
                 FragmentDuration = TimeSpan.FromMilliseconds(-1000),
-                DestWidth = 860,
-                DestHeight = 640,
-                FPS = 15,
+                DestWidth = 320,
+                DestHeight = 240,
+                FPS = 30,
                 CompressionLvl = 71,
                 StreamHeaders = StreamParamsHelper.StreamHeaders.NoHeaders,
             };

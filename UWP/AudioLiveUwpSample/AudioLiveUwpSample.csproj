@@ -25,7 +25,7 @@
     </SccAuxPath>
     <SccProvider>
     </SccProvider>
-    <PackageCertificateThumbprint>E18581ACD45510883169A67235990342867FEE3F</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>90CEF3B7414603790DD1DDBF9A22E4903A3057D7</PackageCertificateThumbprint>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
@@ -137,7 +137,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="MilestoneSystems.VideoOS.Mobile.SDK" Version="21.2.*" />
+    <PackageReference Include="MilestoneSystems.VideoOS.Mobile.SDK" Version="$(MIPSDKMobileVersion).*" />
     <PackageReference Include="CryptoRT">
       <Version>1.0.2</Version>
     </PackageReference>

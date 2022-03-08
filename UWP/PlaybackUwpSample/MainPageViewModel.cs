@@ -219,7 +219,7 @@ namespace VideoOS.Mobile.SDK.Samples.UWP
 
             _connection.RunHeartBeat = true;
 
-            var allCamerasViews = ViewGroupsHelper.GetAllCamerasViews(_connection.Views, DefaultTimeout);
+            var allCamerasViews = ViewGroupsHelper.GetAllCamerasView(_connection.Views, new ViewParams(), DefaultTimeout);
             var cameras = new List<ViewGroupTree>();
 
             ProcessViewItem(allCamerasViews, cameras);
