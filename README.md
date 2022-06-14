@@ -30,6 +30,7 @@ This repo contains samples that demonstrate MIP SDK Mobile .NET integration.
   - Live
   - Playback
   - PTZ
+  - Bookmarks
 - UWP
   - AudioLive
   - AudioPlayback

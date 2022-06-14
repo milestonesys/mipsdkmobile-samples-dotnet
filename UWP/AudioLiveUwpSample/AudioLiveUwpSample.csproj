@@ -25,7 +25,7 @@
     </SccAuxPath>
     <SccProvider>
     </SccProvider>
-    <PackageCertificateThumbprint>90CEF3B7414603790DD1DDBF9A22E4903A3057D7</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>A32D8FF18B297648BA97D22D57E028308CD54579</PackageCertificateThumbprint>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
