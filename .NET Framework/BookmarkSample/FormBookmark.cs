@@ -193,7 +193,7 @@ namespace BookmarkSample
             }
         }
 
-        private BaseCommandResponse GetLatestBookmarks(uint count)
+        private BaseCommandResponse GetLatestBookmarks(int count)
         {
             var bookmarkParams = new BookmarkParams
             {
