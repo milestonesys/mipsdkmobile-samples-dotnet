@@ -34,8 +34,8 @@ namespace PtzSample
         }
 
         private async void OnFormLivePtzLoad(object sender, EventArgs e)
-        {
-            var allCamerasViews = await _connection.Views.GetAllViewsAndCamerasAsync(new ViewParams(), TimeSpan.FromSeconds(30));
+        { 
+            var allCamerasViews = await _connection.Items.GetItemsAsync(new ItemParams() { Kind = ItemKind.Camera, Hierarchy = Hierarchy.SystemDefined, IncludeRelated = false }, TimeSpan.FromSeconds(30));
             _listViewItems = allCamerasViews.AllSubItems.Descendants(ViewItemType.Camera).OfType<ViewGroupTree>().ToList();
             viewGroupTreeBindingSource.DataSource = _listViewItems;
             viewGroupTreeBindingSource.ResetBindings(false);
