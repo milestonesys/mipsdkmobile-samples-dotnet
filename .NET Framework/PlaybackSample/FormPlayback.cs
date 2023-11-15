@@ -54,10 +54,6 @@ namespace PlaybackSample
                 (null == viewGroupItem))
                 return;
 
-            if ((viewGroupItem.ItemType == ViewItemType.Map) ||
-                (viewGroupItem.ItemType == ViewItemType.Carousel))
-                return;
-
             var currentNode = new TreeNode(viewGroupItem.ItemName,
                 (int)viewGroupItem.ItemType,
                 (int)viewGroupItem.ItemType)
