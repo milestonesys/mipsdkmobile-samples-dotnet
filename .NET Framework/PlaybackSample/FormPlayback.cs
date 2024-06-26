@@ -142,7 +142,7 @@ namespace PlaybackSample
                         }
                     }
 
-                    labelCurrentTime.Text = "Current time: " + TimeConverter.FromLong((long)frame.MainHeader.TimeStampUtcMs).ToString();
+                    labelCurrentTime.Text = "Current time: " + TimeConverter.FromLong((long)frame.MainHeader.TimeStampUtcMs).ToLocalTime().ToString();
 
                     if (frame.ExtensionPresence(BinaryFrameHeaderHelper.HeaderExtensionFlags.PlaybackEvents))
                     {
@@ -214,7 +214,7 @@ namespace PlaybackSample
 
         private void GoToTime(object sender, EventArgs e)
         {
-            _playbackVideo?.PlaybackControl.GoToTime(dateTimePickerGoTo.Value);
+            _playbackVideo?.PlaybackControl.GoToTime(dateTimePickerGoTo.Value.ToUniversalTime());
         }
 
         #endregion
