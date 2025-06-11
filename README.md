@@ -21,7 +21,7 @@ The MIP SDK Mobile includes SDK libraries for
 
 - iOS (Swift and Objective-C)
 - Android (Java or Kotlin)
-- .NET ( Xamarin and .NET Framework)
+- .NET (UWP, Xamarin, and .NET Framework)
 - Web (JavaScript)
 
 This repo contains samples that demonstrate MIP SDK Mobile .NET integration.
@@ -31,6 +31,12 @@ This repo contains samples that demonstrate MIP SDK Mobile .NET integration.
   - Playback
   - PTZ
   - Bookmarks
+- UWP
+  - AudioLive
+  - AudioPlayback
+  - Playback
+  - PushToTalk
+  - VideoStreaming
 - Xamarin
   - Live
 
